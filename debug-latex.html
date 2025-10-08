@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug LaTeX</title>
+</head>
+<body>
+    <h1>Debug LaTeX Cleaning</h1>
+    <div id="results"></div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script>
+        async function debugLatex() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch('assets/publications.bib');
+                const content = await response.text();
+                
+                const parser = new BibtexParser();
+                const entries = parser.parse(content);
+                
+                const firstEntry = entries['kong2025unbend'];
+                if (firstEntry && firstEntry.abstract) {
+                    const abstract = firstEntry.abstract;
+                    
+                    resultsDiv.innerHTML = `
+                        <h2>Abstract Analysis</h2>
+                        <p><strong>Abstract length:</strong> ${abstract.length}</p>
+                        <p><strong>Contains backslashes:</strong> ${abstract.includes('\\')}</p>
+                        <p><strong>Contains %:</strong> ${abstract.includes('%')}</p>
+                        
+                        <h3>Full Abstract:</h3>
+                        <div style="border: 1px solid #ccc; padding: 10px; background: #f9f9f9; white-space: pre-wrap;">${abstract}</div>
+                        
+                        <h3>Character Analysis (last 200 chars):</h3>
+                        <pre style="background: #f0f0f0; padding: 10px; font-size: 12px;">${abstract.slice(-200).split('').map((c, i) => `${abstract.length - 200 + i}: '${c}' (${c.charCodeAt(0)})`).join('\\n')}</pre>
+                        
+                        <h3>Search for problematic patterns:</h3>
+                        <p><strong>Position of "8 \\%":</strong> ${abstract.indexOf('8 \\%')}</p>
+                        <p><strong>Position of "8 %":</strong> ${abstract.indexOf('8 %')}</p>
+                        <p><strong>Position of "300":</strong> ${abstract.indexOf('300')}</p>
+                        <p><strong>Text around "300":</strong> ${abstract.substring(abstract.indexOf('300') - 20, abstract.indexOf('300') + 20)}</p>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = '<p>No abstract found</p>';
+                }
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', debugLatex);
+    </script>
+</body>
+</html>

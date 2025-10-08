@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Publications</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .error { color: red; }
+        .success { color: green; }
+        .publication { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Publications Debug</h1>
+    <div id="status">Loading...</div>
+    <div id="publications-container"></div>
+
+    <script src="assets/bibtex-parser.js"></script>
+    <script src="assets/publication-renderer.js"></script>
+    <script>
+        async function debugPublications() {
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                statusDiv.innerHTML = 'Initializing renderer...';
+                const renderer = new PublicationRenderer();
+                
+                statusDiv.innerHTML = 'Loading files...';
+                const success = await renderer.initialize();
+                
+                if (success) {
+                    statusDiv.innerHTML = `<span class="success">✓ Loaded ${Object.keys(renderer.entries).length} publications</span>`;
+                    
+                    // List all publication keys
+                    const keys = Object.keys(renderer.entries);
+                    console.log('Publication keys:', keys);
+                    
+                    // Render publications
+                    renderer.renderPublications();
+                } else {
+                    statusDiv.innerHTML = '<span class="error">✗ Failed to load publications</span>';
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<span class="error">✗ Error: ${error.message}</span>`;
+                console.error('Debug error:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', debugPublications);
+    </script>
+</body>
+</html>

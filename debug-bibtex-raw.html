@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw BibTeX Debug</title>
+</head>
+<body>
+    <h1>Raw BibTeX Content</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function showRawBibtex() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch('assets/publications.bib');
+                const content = await response.text();
+                
+                // Show first entry only
+                const firstEntry = content.split('@article{')[1];
+                const entryEnd = firstEntry.indexOf('\n@article{');
+                const completeFirstEntry = '@article{' + (entryEnd > 0 ? firstEntry.substring(0, entryEnd) : firstEntry);
+                
+                resultsDiv.innerHTML = `
+                    <h2>First BibTeX Entry (Raw)</h2>
+                    <pre style="background: #f5f5f5; padding: 10px; white-space: pre-wrap; font-size: 12px;">${completeFirstEntry}</pre>
+                    
+                    <h2>Character Analysis</h2>
+                    <p>Total length: ${completeFirstEntry.length}</p>
+                    <p>Contains 'abstract': ${completeFirstEntry.includes('abstract')}</p>
+                    <p>Abstract position: ${completeFirstEntry.indexOf('abstract')}</p>
+                `;
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', showRawBibtex);
+    </script>
+</body>
+</html>

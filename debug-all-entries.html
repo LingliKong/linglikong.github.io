@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug All Entries</title>
+</head>
+<body>
+    <h1>Debug All BibTeX Entries</h1>
+    <div id="results"></div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script>
+        async function debugAllEntries() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch('assets/publications.bib');
+                const content = await response.text();
+                
+                // Show raw content structure
+                const entryStarts = [];
+                let pos = 0;
+                while (true) {
+                    const found = content.indexOf('@article{', pos);
+                    if (found === -1) break;
+                    entryStarts.push(found);
+                    pos = found + 1;
+                }
+                
+                resultsDiv.innerHTML = `
+                    <h2>Raw BibTeX Analysis</h2>
+                    <p><strong>Total content length:</strong> ${content.length}</p>
+                    <p><strong>Number of @article entries found:</strong> ${entryStarts.length}</p>
+                    <p><strong>Entry positions:</strong> ${entryStarts.join(', ')}</p>
+                `;
+                
+                // Test the parser
+                const parser = new BibtexParser();
+                const entries = parser.parse(content);
+                
+                resultsDiv.innerHTML += `
+                    <h2>Parser Results</h2>
+                    <p><strong>Entries parsed:</strong> ${Object.keys(entries).length}</p>
+                    <p><strong>Entry keys:</strong> ${Object.keys(entries).join(', ')}</p>
+                `;
+                
+                // Show each entry
+                Object.keys(entries).forEach((key, index) => {
+                    const entry = entries[key];
+                    resultsDiv.innerHTML += `
+                        <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                            <h3>Entry ${index + 1}: ${key}</h3>
+                            <p><strong>Title:</strong> ${entry.title || 'NO TITLE'}</p>
+                            <p><strong>Author:</strong> ${entry.author || 'NO AUTHOR'}</p>
+                            <p><strong>Abstract:</strong> ${entry.abstract ? (entry.abstract.length > 100 ? entry.abstract.substring(0, 100) + '...' : entry.abstract) : 'NO ABSTRACT'}</p>
+                            <p><strong>All fields:</strong> ${Object.keys(entry).join(', ')}</p>
+                        </div>
+                    `;
+                });
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+                console.error('Debug error:', error);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', debugAllEntries);
+    </script>
+</body>
+</html>

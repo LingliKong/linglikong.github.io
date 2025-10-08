@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Index Page</title>
+</head>
+<body>
+    <h1>Debug Index Page</h1>
+    <div id="debug-results"></div>
+    
+    <!-- Test publication structure -->
+    <div class="publication-item" data-bibtex-key="kong2025unbend">
+        <h3 class="publication-title">Loading title...</h3>
+        <div class="publication-abstract" id="abstract-1">
+            <p>Loading abstract...</p>
+        </div>
+    </div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script>
+        // Debug version of PublicationManager
+        class DebugPublicationManager {
+            constructor() {
+                this.parser = new BibtexParser();
+                this.publications = [];
+                this.isLoaded = false;
+            }
+
+            async initialize() {
+                const debugDiv = document.getElementById('debug-results');
+                
+                try {
+                    debugDiv.innerHTML += '<p>🔄 Loading files...</p>';
+                    
+                    const [bibtexResponse, mappingResponse] = await Promise.all([
+                        fetch('assets/publications.bib'),
+                        fetch('assets/citation-mapping.json')
+                    ]);
+
+                    debugDiv.innerHTML += `<p>📁 Files loaded: BibTeX(${bibtexResponse.ok}) Mapping(${mappingResponse.ok})</p>`;
+
+                    if (!bibtexResponse.ok || !mappingResponse.ok) {
+                        throw new Error('Failed to load files');
+                    }
+
+                    const bibtexContent = await bibtexResponse.text();
+                    const mappingData = await mappingResponse.json();
+                    this.publications = mappingData.publications;
+
+                    debugDiv.innerHTML += `<p>📊 BibTeX length: ${bibtexContent.length}, Publications: ${this.publications.length}</p>`;
+
+                    // Parse BibTeX content
+                    this.parser.parse(bibtexContent);
+                    this.isLoaded = true;
+
+                    debugDiv.innerHTML += '<p>✅ Parsing complete</p>';
+                    
+                    // Show what entries were parsed
+                    const parsedKeys = Object.keys(this.parser.entries);
+                    debugDiv.innerHTML += `<p>🔑 Parsed keys: ${parsedKeys.join(', ')}</p>`;
+
+                    // Test getting data
+                    const testKey = 'kong2025unbend';
+                    const title = this.parser.getTitle(testKey);
+                    const abstract = this.parser.getAbstract(testKey);
+                    
+                    debugDiv.innerHTML += `<p>🔍 Test data - Title: "${title.substring(0, 50)}..."</p>`;
+                    debugDiv.innerHTML += `<p>🔍 Test data - Abstract: "${abstract.substring(0, 50)}..."</p>`;
+
+                    // Update DOM
+                    this.updatePublicationData();
+
+                } catch (error) {
+                    debugDiv.innerHTML += `<p>❌ Error: ${error.message}</p>`;
+                    console.error('Debug error:', error);
+                }
+            }
+
+            updatePublicationData() {
+                const debugDiv = document.getElementById('debug-results');
+                debugDiv.innerHTML += '<p>🔄 Updating DOM...</p>';
+                
+                // Find test element
+                const testElement = document.querySelector('[data-bibtex-key="kong2025unbend"]');
+                debugDiv.innerHTML += `<p>🎯 Found test element: ${!!testElement}</p>`;
+                
+                if (testElement) {
+                    const titleElement = testElement.querySelector('.publication-title');
+                    const abstractElement = testElement.querySelector('.publication-abstract p');
+                    
+                    debugDiv.innerHTML += `<p>🎯 Found title element: ${!!titleElement}</p>`;
+                    debugDiv.innerHTML += `<p>🎯 Found abstract element: ${!!abstractElement}</p>`;
+                    
+                    if (titleElement) {
+                        const title = this.parser.getTitle('kong2025unbend');
+                        titleElement.textContent = title;
+                        debugDiv.innerHTML += `<p>✅ Updated title: "${title.substring(0, 30)}..."</p>`;
+                    }
+                    
+                    if (abstractElement) {
+                        const abstract = this.parser.getAbstract('kong2025unbend');
+                        abstractElement.textContent = abstract;
+                        debugDiv.innerHTML += `<p>✅ Updated abstract: "${abstract.substring(0, 30)}..."</p>`;
+                    }
+                }
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            const manager = new DebugPublicationManager();
+            window.debugManager = manager;
+            await manager.initialize();
+        });
+    </script>
+</body>
+</html>

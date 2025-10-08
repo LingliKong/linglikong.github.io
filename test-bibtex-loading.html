@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test BibtexParser Loading</title>
+</head>
+<body>
+    <h1>BibtexParser Loading Test</h1>
+    <div id="results"></div>
+
+    <script src="assets/bibtex-parser.js"></script>
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(message, isError = false) {
+            const p = document.createElement('p');
+            p.textContent = message;
+            p.style.color = isError ? 'red' : 'green';
+            results.appendChild(p);
+        }
+
+        // Test 1: Check if BibtexParser is defined
+        addResult(`BibtexParser type: ${typeof BibtexParser}`);
+        addResult(`window.BibtexParser: ${window.BibtexParser}`);
+
+        // Test 2: Try to create an instance
+        try {
+            const parser = new BibtexParser();
+            addResult('✓ BibtexParser instance created successfully');
+            
+            // Test 3: Try to parse some simple BibTeX
+            const testBib = `@article{test2023,
+                title={Test Article},
+                author={Test Author},
+                year={2023}
+            }`;
+            
+            const entries = parser.parse(testBib);
+            addResult(`✓ Parsed ${Object.keys(entries).length} entries`);
+            
+        } catch (error) {
+            addResult(`✗ Error: ${error.message}`, true);
+            console.error('Full error:', error);
+        }
+    </script>
+</body>
+</html>

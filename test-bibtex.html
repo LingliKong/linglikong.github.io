@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BibTeX Test</title>
+</head>
+<body>
+    <h1>BibTeX Parser Test</h1>
+    <div id="test-results"></div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script>
+        async function testBibtex() {
+            const resultsDiv = document.getElementById('test-results');
+            
+            try {
+                // Test loading files
+                const [bibtexResponse, mappingResponse] = await Promise.all([
+                    fetch('assets/publications.bib'),
+                    fetch('assets/citation-mapping.json')
+                ]);
+                
+                console.log('BibTeX response:', bibtexResponse.ok);
+                console.log('Mapping response:', mappingResponse.ok);
+                
+                if (!bibtexResponse.ok || !mappingResponse.ok) {
+                    throw new Error('Failed to load files');
+                }
+                
+                const bibtexContent = await bibtexResponse.text();
+                const mappingData = await mappingResponse.json();
+                
+                console.log('BibTeX content length:', bibtexContent.length);
+                console.log('BibTeX content preview:', bibtexContent.substring(0, 200));
+                console.log('Mapping data:', mappingData);
+                
+                // Test parser
+                const parser = new BibtexParser();
+                const entries = parser.parse(bibtexContent);
+                
+                console.log('Parsed entries:', entries);
+                
+                // Test specific entry
+                const testPublication = mappingData.publications[0];
+                const testKey = testPublication.bibtexKey;
+                console.log('Test key:', testKey);
+                
+                if (testKey && entries[testKey]) {
+                    const entry = entries[testKey];
+                    const title = parser.getTitle(testKey);
+                    const abstract = parser.getAbstract(testKey);
+                    
+                    console.log('Entry:', entry);
+                    console.log('Title:', title);
+                    console.log('Abstract:', abstract);
+                    
+                    resultsDiv.innerHTML = `
+                        <h2>Test Results</h2>
+                        <p><strong>Files loaded:</strong> ✓</p>
+                        <p><strong>Entries parsed:</strong> ${Object.keys(entries).length}</p>
+                        <p><strong>Test key:</strong> ${testKey}</p>
+                        <p><strong>Title:</strong> ${title}</p>
+                        <p><strong>Abstract:</strong> ${abstract.substring(0, 100)}...</p>
+                        <h3>Raw Entry:</h3>
+                        <pre>${JSON.stringify(entry, null, 2)}</pre>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = '<p>❌ Test key not found in entries</p>';
+                }
+                
+            } catch (error) {
+                console.error('Test error:', error);
+                resultsDiv.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Run test when page loads
+        document.addEventListener('DOMContentLoaded', testBibtex);
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract Debug</title>
+</head>
+<body>
+    <h1>Abstract Debug</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function debugAbstract() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch('assets/publications.bib');
+                const content = await response.text();
+                
+                // Get first entry
+                const firstEntryMatch = content.match(/@article\{([^,]+),\s*([\s\S]*?)\n\s*\}/);
+                if (firstEntryMatch) {
+                    const [, key, entryContent] = firstEntryMatch;
+                    
+                    // Search for abstract in different ways
+                    const abstractPos1 = entryContent.indexOf('abstract');
+                    const abstractPos2 = entryContent.indexOf('abstract  = {');
+                    const abstractPos3 = entryContent.indexOf('abstract = {');
+                    
+                    // Show character codes around abstract
+                    let abstractSection = '';
+                    if (abstractPos1 >= 0) {
+                        abstractSection = entryContent.substring(abstractPos1 - 10, abstractPos1 + 50);
+                    }
+                    
+                    resultsDiv.innerHTML = `
+                        <h2>Abstract Search Results</h2>
+                        <p><strong>Entry length:</strong> ${entryContent.length}</p>
+                        <p><strong>'abstract' found at:</strong> ${abstractPos1}</p>
+                        <p><strong>'abstract  = {' found at:</strong> ${abstractPos2}</p>
+                        <p><strong>'abstract = {' found at:</strong> ${abstractPos3}</p>
+                        <p><strong>Section around abstract:</strong></p>
+                        <pre style="background: #f0f0f0; padding: 10px;">${abstractSection}</pre>
+                        <p><strong>Character codes:</strong></p>
+                        <pre style="background: #f0f0f0; padding: 10px;">${abstractSection.split('').map((c, i) => `${i}: '${c}' (${c.charCodeAt(0)})`).join('\\n')}</pre>
+                        
+                        <h3>Manual Extract Test:</h3>
+                    `;
+                    
+                    // Try manual extraction
+                    if (abstractPos2 >= 0) {
+                        const afterAbstract = entryContent.substring(abstractPos2 + 13);
+                        const closingBrace = afterAbstract.lastIndexOf('}');
+                        if (closingBrace >= 0) {
+                            const extractedAbstract = afterAbstract.substring(0, closingBrace);
+                            resultsDiv.innerHTML += `
+                                <p><strong>Extracted abstract length:</strong> ${extractedAbstract.length}</p>
+                                <p><strong>First 100 chars:</strong> ${extractedAbstract.substring(0, 100)}...</p>
+                            `;
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', debugAbstract);
+    </script>
+</body>
+</html>

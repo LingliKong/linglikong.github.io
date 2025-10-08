@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Dynamic Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="padding: 2rem;">
+        <h1>Simple Dynamic Publications Test</h1>
+        
+        <div class="publications-list" id="publications-container">
+            <div class="loading-publications">
+                <p>Loading publications...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script src="assets/publication-renderer.js"></script>
+    <script>
+        console.log('Scripts loaded');
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('DOM ready');
+            
+            try {
+                console.log('Creating renderer...');
+                const renderer = new PublicationRenderer();
+                
+                console.log('Initializing...');
+                const success = await renderer.initialize();
+                console.log('Initialization result:', success);
+                
+                if (success) {
+                    console.log('Rendering publications...');
+                    renderer.renderPublications();
+                    console.log('Rendering complete');
+                } else {
+                    document.getElementById('publications-container').innerHTML = 
+                        '<p style="color: red;">Failed to load publications</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('publications-container').innerHTML = 
+                    `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

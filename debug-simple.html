@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Debug Test</title>
+</head>
+<body>
+    <h1>Simple Debug Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function simpleTest() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Starting test...</p>';
+            
+            try {
+                // Test 1: Can we fetch the BibTeX file?
+                console.log('Testing BibTeX file fetch...');
+                const bibtexResponse = await fetch('assets/publications.bib');
+                console.log('BibTeX response status:', bibtexResponse.status);
+                
+                if (!bibtexResponse.ok) {
+                    throw new Error(`BibTeX fetch failed: ${bibtexResponse.status}`);
+                }
+                
+                const bibtexContent = await bibtexResponse.text();
+                console.log('BibTeX content length:', bibtexContent.length);
+                console.log('BibTeX preview:', bibtexContent.substring(0, 100));
+                
+                // Test 2: Can we fetch the mapping file?
+                console.log('Testing mapping file fetch...');
+                const mappingResponse = await fetch('assets/citation-mapping.json');
+                console.log('Mapping response status:', mappingResponse.status);
+                
+                if (!mappingResponse.ok) {
+                    throw new Error(`Mapping fetch failed: ${mappingResponse.status}`);
+                }
+                
+                const mappingContent = await mappingResponse.text();
+                console.log('Mapping content:', mappingContent);
+                
+                // Test 3: Can we parse JSON?
+                const mappingData = JSON.parse(mappingContent);
+                console.log('Parsed mapping:', mappingData);
+                
+                resultsDiv.innerHTML = `
+                    <h2>✅ All Tests Passed!</h2>
+                    <p><strong>BibTeX file:</strong> Loaded (${bibtexContent.length} characters)</p>
+                    <p><strong>Mapping file:</strong> Loaded and parsed</p>
+                    <p><strong>Publications found:</strong> ${mappingData.publications ? mappingData.publications.length : 'Unknown'}</p>
+                    <h3>BibTeX Preview:</h3>
+                    <pre style="background: #f5f5f5; padding: 10px; overflow: auto;">${bibtexContent.substring(0, 300)}...</pre>
+                `;
+                
+            } catch (error) {
+                console.error('Test failed:', error);
+                resultsDiv.innerHTML = `
+                    <h2>❌ Test Failed</h2>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>Check console for details</strong></p>
+                `;
+            }
+        }
+        
+        // Run test when page loads
+        document.addEventListener('DOMContentLoaded', simpleTest);
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>Safari Compatibility Test</h1>
+    <div id="status"></div>
+    <div id="publications-container">
+        <div class="loading-publications">
+            <p>Loading publications...</p>
+        </div>
+    </div>
+
+    <script src="assets/bibtex-parser.js"></script>
+    <script src="assets/publication-renderer.js"></script>
+    <script>
+        function addStatus(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            document.getElementById('status').appendChild(div);
+            console.log(message);
+        }
+
+        async function testSafari() {
+            try {
+                addStatus('Starting Safari compatibility test...', 'info');
+                addStatus(`User Agent: ${navigator.userAgent}`, 'info');
+                
+                // Test 1: Check if classes are available
+                addStatus(`BibtexParser available: ${typeof BibtexParser}`, 
+                    typeof BibtexParser === 'function' ? 'success' : 'error');
+                addStatus(`PublicationRenderer available: ${typeof PublicationRenderer}`, 
+                    typeof PublicationRenderer === 'function' ? 'success' : 'error');
+
+                if (typeof BibtexParser === 'undefined' || typeof PublicationRenderer === 'undefined') {
+                    addStatus('Classes not available - stopping test', 'error');
+                    return;
+                }
+
+                // Test 2: Create instances
+                const parser = new BibtexParser();
+                addStatus('BibtexParser instance created', 'success');
+
+                const renderer = new PublicationRenderer();
+                addStatus('PublicationRenderer instance created', 'success');
+
+                // Test 3: Initialize renderer
+                addStatus('Initializing renderer...', 'info');
+                const success = await renderer.initialize();
+                addStatus(`Initialization result: ${success}`, success ? 'success' : 'error');
+
+                if (success) {
+                    addStatus(`Loaded ${Object.keys(renderer.entries).length} entries`, 'success');
+                    
+                    // Test 4: Render publications
+                    renderer.renderPublications();
+                    addStatus('Publications rendered successfully', 'success');
+                } else {
+                    addStatus('Failed to initialize renderer', 'error');
+                }
+
+            } catch (error) {
+                addStatus(`Error: ${error.message}`, 'error');
+                console.error('Full error:', error);
+            }
+        }
+
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', testSafari);
+        } else {
+            testSafari();
+        }
+    </script>
+</body>
+</html>

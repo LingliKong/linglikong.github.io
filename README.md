@@ -40,6 +40,11 @@ A modern, responsive personal website designed for young professionals in resear
    - `software1-installer.exe`, `software2-installer.exe` - Windows installers
    - `software1-mac.dmg`, `software2-linux.tar.gz`, `software3-offline.zip` - Platform-specific downloads
    - `resume.pdf` - Your resume/CV
+
+4. **Update your publications** in the BibTeX file:
+   - Edit `assets/publications.bib` with your actual publication data
+   - Update `assets/citation-mapping.json` to map citation IDs to BibTeX keys
+   - The system automatically generates both BibTeX and APA citations
 4. **Customize colors and styling** in `styles.css` if desired
 5. **Deploy** to your preferred hosting platform
 
@@ -71,6 +76,9 @@ A modern, responsive personal website designed for young professionals in resear
 │   ├── software2-installer.exe
 │   ├── software2-linux.tar.gz
 │   ├── software3-offline.zip
+│   ├── publications.bib         # BibTeX citation database
+│   ├── citation-mapping.json    # Maps citation IDs to BibTeX keys
+│   ├── bibtex-parser.js         # BibTeX parser for citations
 │   └── resume.pdf               # Your resume
 └── README.md           # This file
 ```
@@ -121,3 +129,92 @@ The contact form currently shows an alert on submission. For production use, you
 ## License
 
 Feel free to use this template for your personal website. No attribution required.
+## C
+itation Management System
+
+The website uses a sophisticated citation system that loads from a standard BibTeX file, making it easy to manage hundreds of publications.
+
+### How It Works
+
+1. **BibTeX Database**: All citations are stored in `assets/publications.bib`
+2. **Citation Mapping**: `assets/citation-mapping.json` maps HTML citation IDs to BibTeX keys
+3. **Dynamic Loading**: JavaScript loads and parses citations on demand
+4. **Multiple Formats**: Automatically generates BibTeX and APA citations
+
+### Adding New Publications
+
+1. **Add to BibTeX file**: Add your new publication entry to `assets/publications.bib`
+   ```bibtex
+   @article{smith2024newpaper,
+     title={Your New Paper Title},
+     author={Smith, John and Doe, Jane},
+     journal={Nature},
+     year={2024},
+     doi={10.1038/example},
+     url={https://www.nature.com/articles/example},
+     abstract={Your research abstract goes here. This will be automatically loaded and displayed when users click the Abstract button.}
+   }
+   ```
+
+2. **Update mapping**: Add the mapping in `assets/citation-mapping.json`
+   ```json
+   {
+     "citation-8": "smith2024newpaper"
+   }
+   ```
+
+3. **Add HTML entry**: Add the publication to your HTML with matching citation ID
+   ```html
+   <button class="cite-btn" data-target="citation-8">
+     <i class="fas fa-quote-left"></i> Cite
+   </button>
+   ```
+
+### Benefits
+
+- **Scalable**: Easily manage hundreds of publications
+- **Standard Format**: Uses standard BibTeX format
+- **Automatic Formatting**: Generates both BibTeX and APA citations
+- **Dynamic Content**: Abstracts and PDF links loaded from BibTeX data
+- **Direct Links**: PDF buttons link to actual published articles (DOI/URL)
+- **Easy Maintenance**: Update all publication data in one place
+- **Import Friendly**: Can import from reference managers like Zotero, Mendeley
+- **Version Control**: BibTeX files work well with Git
+
+### Importing from Reference Managers
+
+Most reference managers (Zotero, Mendeley, EndNote) can export to BibTeX format:
+1. Export your publications as a `.bib` file
+2. Replace the content in `assets/publications.bib`
+3. Update the citation mapping file accordingly
+
+### Dynamic Publication Features
+
+The system now automatically loads publication data from your BibTeX file:
+
+**Abstracts**: 
+- Loaded from the `abstract` field in your BibTeX entries
+- No need to maintain abstracts in HTML
+- Automatically displayed when users click "Abstract"
+
+**PDF Links**:
+- Automatically point to published articles using DOI or URL
+- Priority: DOI links (https://doi.org/...) over direct URLs
+- Opens in new tab with proper security attributes
+
+**Example BibTeX Entry with All Features**:
+```bibtex
+@article{example2024,
+  title={Your Research Title},
+  author={Your Name and Co-author},
+  journal={Journal Name},
+  year={2024},
+  volume={10},
+  pages={123-145},
+  doi={10.1000/example},
+  url={https://journal.com/article/example},
+  abstract={Your detailed abstract describing methodology, findings, and significance. This text will automatically appear when users click the Abstract button on your website.}
+}
+```
+
+This approach ensures your website always displays the most current publication information and provides direct access to your published work.

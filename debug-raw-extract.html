@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Raw Extract</title>
+</head>
+<body>
+    <h1>Debug Raw BibTeX Extract</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function debugRawExtract() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch('assets/publications.bib');
+                const content = await response.text();
+                
+                // Find the first entry manually
+                const firstEntryStart = content.indexOf('@article{kong2025unbend');
+                const firstEntryEnd = content.indexOf('\n@article{', firstEntryStart);
+                const actualEnd = firstEntryEnd === -1 ? content.length : firstEntryEnd;
+                
+                const firstEntry = content.substring(firstEntryStart, actualEnd);
+                
+                // Find abstract field manually
+                const abstractStart = firstEntry.indexOf('abstract  = {');
+                const afterAbstract = firstEntry.substring(abstractStart + 13);
+                const lastBrace = afterAbstract.lastIndexOf('}');
+                const rawAbstract = afterAbstract.substring(0, lastBrace);
+                
+                resultsDiv.innerHTML = `
+                    <h2>Raw BibTeX Entry</h2>
+                    <p><strong>Entry length:</strong> ${firstEntry.length}</p>
+                    <p><strong>Abstract start position:</strong> ${abstractStart}</p>
+                    <p><strong>Raw abstract length:</strong> ${rawAbstract.length}</p>
+                    
+                    <h3>Raw Abstract (first 500 chars):</h3>
+                    <pre style="background: #f0f0f0; padding: 10px; white-space: pre-wrap; font-size: 12px;">${rawAbstract.substring(0, 500)}</pre>
+                    
+                    <h3>Raw Abstract (last 200 chars):</h3>
+                    <pre style="background: #f0f0f0; padding: 10px; white-space: pre-wrap; font-size: 12px;">${rawAbstract.slice(-200)}</pre>
+                    
+                    <h3>Character codes around backslash:</h3>
+                    <pre style="background: #f0f0f0; padding: 10px; font-size: 12px;">${rawAbstract.slice(-50).split('').map((c, i) => `${rawAbstract.length - 50 + i}: '${c}' (${c.charCodeAt(0)})`).join('\\n')}</pre>
+                `;
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', debugRawExtract);
+    </script>
+</body>
+</html>

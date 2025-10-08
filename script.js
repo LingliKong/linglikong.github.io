@@ -116,8 +116,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
+// Function to initialize animations
+function initializeAnimations() {
     const animatedElements = document.querySelectorAll('.research-card, .project-card, .publication-item');
     
     animatedElements.forEach(el => {
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-});
+}
 
 // Typing animation for hero text
 function typeWriter(element, text, speed = 100) {
@@ -178,13 +178,14 @@ function typeHtml(element, html, speed = 50) {
   })();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const heroTitle = document.querySelector('.hero-text h1');
-  if (heroTitle) {
-    const html = heroTitle.innerHTML; // includes your <span class="highlight">Lingli</span>
-    setTimeout(() => typeHtml(heroTitle, html, 50), 500);
-  }
-});
+// Function to initialize hero typing animation
+function initializeHeroAnimation() {
+    const heroTitle = document.querySelector('.hero-text h1');
+    if (heroTitle) {
+        const html = heroTitle.innerHTML;
+        setTimeout(() => typeHtml(heroTitle, html, 50), 500);
+    }
+}
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   const nameSpan = document.getElementById('name');
@@ -240,39 +241,151 @@ window.addEventListener('scroll', () => {
 });
 
 
-// Abstract toggle functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const abstractToggles = document.querySelectorAll('.abstract-toggle');
+// This function is now handled by the PublicationRenderer
+
+// Global publication renderer instance
+let publicationRenderer;
+
+// Main initialization - consolidate all DOMContentLoaded listeners
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Initializing website...');
     
-    abstractToggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const targetId = toggle.getAttribute('data-target');
-            const abstractDiv = document.getElementById(targetId);
-            const icon = toggle.querySelector('i');
+    // Initialize hero animation
+    initializeHeroAnimation();
+    
+    // Initialize publications with simpler approach
+    try {
+        console.log('Creating PublicationRenderer...');
+        publicationRenderer = new PublicationRenderer();
+        
+        console.log('Initializing renderer...');
+        const success = await publicationRenderer.initialize();
+        
+        if (success) {
+            console.log(`Loaded ${Object.keys(publicationRenderer.entries).length} publications`);
+            publicationRenderer.renderPublications();
+            console.log('Publications rendered successfully');
             
-            // Toggle the abstract visibility
-            if (abstractDiv.classList.contains('active')) {
-                abstractDiv.classList.remove('active');
-                toggle.classList.remove('active');
-                toggle.innerHTML = '<i class="fas fa-chevron-down"></i> Abstract';
-            } else {
-                // Close other open abstracts
-                document.querySelectorAll('.publication-abstract.active').forEach(abs => {
-                    abs.classList.remove('active');
-                });
-                document.querySelectorAll('.abstract-toggle.active').forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.innerHTML = '<i class="fas fa-chevron-down"></i> Abstract';
-                });
-                
-                // Open clicked abstract
-                abstractDiv.classList.add('active');
-                toggle.classList.add('active');
-                toggle.innerHTML = '<i class="fas fa-chevron-up"></i> Abstract';
-            }
+            // Initialize animations after publications are rendered
+            setTimeout(() => {
+                initializeAnimations();
+            }, 100);
+        } else {
+            document.getElementById('publications-container').innerHTML = 
+                '<p style="color: red;">Failed to load publications. Please try again later.</p>';
+        }
+    } catch (error) {
+        console.error('Error initializing publications:', error);
+        document.getElementById('publications-container').innerHTML = 
+            `<p style="color: red;">Error loading publications: ${error.message}</p>`;
+    }
+    
+    // Initialize citation modal
+    initializeCitationModal();
+    
+    console.log('Website initialization complete');
+});
+
+
+
+// Citation modal functionality
+function initializeCitationModal() {
+    const modal = document.getElementById('citation-modal');
+    const citationText = document.getElementById('citation-text');
+    const copyBtn = document.getElementById('copy-citation');
+    const closeBtn = document.querySelector('.citation-close');
+    const citationTabs = document.querySelectorAll('.citation-tab');
+    
+    let currentCitationId = '';
+    let currentFormat = 'bibtex';
+    
+    // Open citation modal - use event delegation for dynamically created buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.cite-btn')) {
+            const btn = e.target.closest('.cite-btn');
+            e.preventDefault();
+            currentCitationId = btn.getAttribute('data-target');
+            currentFormat = 'bibtex';
+            
+            // Reset tabs
+            citationTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector('[data-format="bibtex"]').classList.add('active');
+            
+            showCitation();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    });
+    
+    // Close modal
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    
+    // ESC key to close modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
+    
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Citation format tabs
+    citationTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            citationTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentFormat = tab.getAttribute('data-format');
+            showCitation();
         });
     });
-});
+    
+    // Show citation based on current format
+    function showCitation() {
+        if (!publicationRenderer) {
+            citationText.textContent = 'Loading citation data...';
+            return;
+        }
+
+        const citation = publicationRenderer.getCitation(currentCitationId, currentFormat);
+        citationText.textContent = citation;
+    }
+    
+    // Copy to clipboard
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(citationText.textContent);
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy to Clipboard';
+            }, 2000);
+        } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = citationText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy to Clipboard';
+            }, 2000);
+        }
+    });
+}
 
 // Add CSS for active navigation link
 const style = document.createElement('style');

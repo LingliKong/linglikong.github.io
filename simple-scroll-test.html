@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Scroll Test</title>
+    <style>
+        .test-container {
+            max-height: 200px;
+            overflow-y: scroll;
+            border: 2px solid #333;
+            padding: 1rem;
+            margin: 1rem;
+            background: #f0f0f0;
+        }
+        
+        .test-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .test-container::-webkit-scrollbar-track {
+            background: #ddd;
+        }
+        
+        .test-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        .test-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Scroll Test</h1>
+    
+    <div class="test-container">
+        <h3>This should have a scroll bar:</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+    </div>
+    
+    <div style="margin: 1rem; padding: 1rem; border: 1px solid #ccc;">
+        <h3>Browser Info:</h3>
+        <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
+        <p><strong>Platform:</strong> <span id="platform"></span></p>
+    </div>
+    
+    <script>
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+        document.getElementById('platform').textContent = navigator.platform;
+    </script>
+</body>
+</html>

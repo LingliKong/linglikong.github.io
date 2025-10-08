@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Learning for Structural Biology - Lingli Kong</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Lingli Kong</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="software.html">Software</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="research-detail">
+        <div class="navbar-spacer" style="height: 100px; width: 100%;"></div>
+        <div class="container">
+            <div class="research-header">
+                <a href="index.html#research" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Research
+                </a>
+                <h1>Deep Learning for Structural Biology</h1>
+                <p class="research-subtitle">Applying AI and machine learning to solve complex problems in cryo-EM</p>
+            </div>
+
+            <div class="research-content-detail">
+                <div class="content-section">
+                    <h2>The AI Revolution in Structural Biology</h2>
+                    <p>The integration of artificial intelligence and machine learning into structural biology represents a paradigm shift in how we approach complex biological problems. Traditional image processing methods, while effective, often struggle with the inherent challenges of cryo-EM data: low signal-to-noise ratios, diverse particle orientations, and the need for extensive manual intervention.</p>
+                    
+                    <p>Deep learning offers unprecedented opportunities to automate and improve various aspects of cryo-EM data processing, from initial particle detection to final structure refinement. By learning complex patterns directly from data, neural networks can capture subtle features that are difficult to define through traditional algorithmic approaches.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Research Applications</h2>
+                    <div class="research-highlights">
+                        <div class="highlight-item">
+                            <h3><i class="fas fa-search"></i> Automated Particle Picking</h3>
+                            <p>Developing convolutional neural networks (CNNs) that can automatically identify and pick particles from cryo-EM micrographs with higher accuracy and consistency than traditional methods.</p>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <h3><i class="fas fa-crosshairs"></i> Template Matching</h3>
+                            <p>Creating deep learning approaches for template matching that can handle complex particle orientations and low-contrast conditions, particularly for membrane proteins in liposome structures.</p>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <h3><i class="fas fa-layer-group"></i> Image Classification</h3>
+                            <p>Implementing neural networks for automated classification of particle images, reducing manual curation time and improving reproducibility of results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Technical Innovations</h2>
+                    <p>My work in this area focuses on developing specialized neural network architectures tailored for cryo-EM applications:</p>
+                    
+                    <ul class="contribution-list">
+                        <li><strong>CNN Architecture Design:</strong> Developed custom convolutional neural network architectures optimized for cryo-EM image characteristics, including appropriate handling of noise and contrast variations.</li>
+                        
+                        <li><strong>Training Data Generation:</strong> Created comprehensive training datasets that capture the diversity of cryo-EM conditions, including various defocus values, ice thickness, and particle orientations.</li>
+                        
+                        <li><strong>Transfer Learning:</strong> Implemented transfer learning approaches that allow models trained on one type of sample to be quickly adapted for new targets, reducing the need for extensive retraining.</li>
+                        
+                        <li><strong>Real-time Processing:</strong> Optimized neural network implementations for real-time processing during data collection, enabling immediate feedback and quality assessment.</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Membrane Protein Detection</h2>
+                    <p>One of my key contributions has been the development of deep learning methods specifically for detecting membrane proteins embedded in liposome structures. This represents a particularly challenging problem due to:</p>
+                    
+                    <p><strong>Complex Backgrounds:</strong> Membrane proteins are often embedded in lipid bilayers that create complex, variable backgrounds that traditional methods struggle to handle.</p>
+                    
+                    <p><strong>Orientation Diversity:</strong> Membrane proteins can adopt numerous orientations within the lipid environment, requiring robust detection methods that can handle this variability.</p>
+                    
+                    <p><strong>Low Contrast:</strong> The contrast between membrane proteins and their lipid environment is often very low, making detection challenging even for experienced human operators.</p>
+                    
+                    <p>My deep learning approach addresses these challenges through specialized network architectures and training strategies that have demonstrated significant improvements in both detection accuracy and processing speed.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Impact on the Field</h2>
+                    <p>The deep learning methods I have developed are making cryo-EM more accessible and reliable:</p>
+                    
+                    <p><strong>Democratization:</strong> By reducing the expertise barrier, these automated methods enable more laboratories to achieve high-quality results with cryo-EM data processing.</p>
+                    
+                    <p><strong>Reproducibility:</strong> Automated processing reduces human bias and variability, leading to more reproducible results across different operators and laboratories.</p>
+                    
+                    <p><strong>Efficiency:</strong> Significant reduction in processing time allows researchers to focus on biological interpretation rather than technical image processing challenges.</p>
+                    
+                    <p><strong>Quality Improvement:</strong> In many cases, deep learning methods achieve higher accuracy than traditional approaches, leading to better structural determinations.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Future Perspectives</h2>
+                    <p>The field of AI-assisted structural biology is rapidly evolving, and future developments will likely include:</p>
+                    
+                    <p>Integration of multiple AI approaches into comprehensive processing pipelines, development of unsupervised learning methods that can discover new structural features without prior knowledge, and extension to dynamic systems where AI can help capture and analyze conformational changes in real-time.</p>
+                    
+                    <p>Additionally, the combination of AI with other emerging technologies, such as advanced electron detectors and phase plates, promises to unlock new capabilities in structural biology that were previously unimaginable.</p>
+                </div>
+
+                <div class="related-publications">
+                    <h2>Related Publications</h2>
+                    <div class="pub-links">
+                        <a href="index.html#publications" class="pub-link">
+                            <i class="fas fa-file-alt"></i>
+                            View Related Publications
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Lingli Kong. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

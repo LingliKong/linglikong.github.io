@@ -1,0 +1,40 @@
+{
+  "featuredPublications": [
+    {
+      "bibtexKey": "kong2025unbend",
+      "hasGraphicalAbstract": true,
+      "graphicalAbstractType": "video",
+      "videoSources": [
+        {
+          "src": "assets/research-video-1.mp4",
+          "type": "video/mp4"
+        },
+        {
+          "src": "assets/research-video-1.webm",
+          "type": "video/webm"
+        }
+      ],
+      "posterImage": "assets/video-poster-1.jpg",
+      "hasCode": true
+    },
+    {
+      "bibtexKey": "Elferich2025CEMOVIS",
+      "hasGraphicalAbstract": true,
+      "graphicalAbstractType": "image",
+      "imageSrc": "assets/graphical-abstract-2.jpg",
+      "hasCode": false
+    },
+    {
+      "bibtexKey": "Elferich2024CTFFIND5",
+      "hasGraphicalAbstract": true,
+      "graphicalAbstractType": "image",
+      "imageSrc": "assets/graphical-abstract-3.jpg",
+      "hasCode": true
+    }
+  ],
+  "settings": {
+    "maxFeaturedPublications": 3,
+    "sortBy": "year",
+    "sortOrder": "desc"
+  }
+}

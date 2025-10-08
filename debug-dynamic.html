@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Dynamic Publications</title>
+</head>
+<body>
+    <h1>Debug Dynamic Publications</h1>
+    <div id="results"></div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script src="assets/publication-renderer.js"></script>
+    <script>
+        async function debugDynamic() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                resultsDiv.innerHTML = '<p>Starting debug...</p>';
+                
+                // Test if PublicationRenderer exists
+                if (typeof PublicationRenderer === 'undefined') {
+                    resultsDiv.innerHTML += '<p>❌ PublicationRenderer not found</p>';
+                    return;
+                }
+                
+                resultsDiv.innerHTML += '<p>✅ PublicationRenderer found</p>';
+                
+                // Test initialization
+                const renderer = new PublicationRenderer();
+                resultsDiv.innerHTML += '<p>✅ PublicationRenderer created</p>';
+                
+                const success = await renderer.initialize();
+                resultsDiv.innerHTML += `<p>${success ? '✅' : '❌'} Initialization: ${success}</p>`;
+                
+                if (success) {
+                    resultsDiv.innerHTML += `<p>✅ Entries loaded: ${Object.keys(renderer.entries).length}</p>`;
+                    resultsDiv.innerHTML += `<p>✅ Config loaded: ${renderer.config ? 'Yes' : 'No'}</p>`;
+                    
+                    // Show entry keys
+                    const keys = Object.keys(renderer.entries);
+                    resultsDiv.innerHTML += `<p><strong>Entry keys:</strong> ${keys.join(', ')}</p>`;
+                    
+                    // Test rendering
+                    const testContainer = document.createElement('div');
+                    testContainer.id = 'publications-container';
+                    document.body.appendChild(testContainer);
+                    
+                    renderer.renderPublications();
+                    
+                    const renderedItems = testContainer.querySelectorAll('.publication-item');
+                    resultsDiv.innerHTML += `<p>✅ Rendered publications: ${renderedItems.length}</p>`;
+                    
+                } else {
+                    resultsDiv.innerHTML += '<p>❌ Failed to initialize</p>';
+                }
+                
+            } catch (error) {
+                resultsDiv.innerHTML += `<p>❌ Error: ${error.message}</p>`;
+                console.error('Debug error:', error);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', debugDynamic);
+    </script>
+</body>
+</html>

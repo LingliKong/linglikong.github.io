@@ -36,7 +36,9 @@
             <div class="hero-text">
                 <h1>Hi, I'm <span class="highlight">Lingli</span></h1>
                 <h2>Research & Development Professional</h2>
-                <p>Passionate about with expertise in [key skills]. Currently seeking opportunities to contribute to innovative projects and drive meaningful research.</p>
+                <!-- <p>Passionate about with expertise in [key skills]. Currently seeking opportunities to contribute to innovative projects and drive meaningful research.</p> -->
+                <p>Passionate about utilizing the machine learning technique and developing computational workflow to solve Cryo-EM challenges and always eager to collaborate on innovative projects.</p>
+               
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
                     <a href="assets/lingli_kong_cv.pdf" class="btn btn-secondary" target="_blank">
@@ -58,18 +60,20 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm a dedicated researcher and developer with 5 years of experience in Cryo-EM. My work focuses on tackling the real world challenges in Cryo-EM, where I combine theoretical knowledge with practical applications to solve complex problems.</p>
-                    <p>I hold a Ph.D degree and have contributed to [number] publications in peer-reviewed journals. I'm passionate about utilizing the machine learning technique and developing computational workflow to solve Cryo-EM challenges and always eager to collaborate on innovative projects.</p>
+                    <!--<p>I'm a dedicated researcher and developer with 5 years of experience in Cryo-EM. My work focuses on tackling the real world challenges in Cryo-EM, where I combine theoretical knowledge with practical applications to solve complex problems.</p> -->
+                    <!--<p>I hold a Ph.D degree and have contributed to [number] publications in peer-reviewed journals. I'm passionate about utilizing the machine learning technique and developing computational workflow to solve Cryo-EM challenges and always eager to collaborate on innovative projects.</p> -->
+                    <p>I’m a computational scientist building physics-aware algorithms and AI tools that turn messy, in-situ cryo-EM data into reliable structure. I’ve contributed multiple C++ programs to the cisTEM suite and related tools (e.g., Unbend for local motion correction, CTFFIND5 tilt components, fit_tilt_model, shift_field_generation), and I develop an orientation-conditioned neural network that augments 2D template matching (2DTM) for membrane-protein detection from liposomes—reducing template bias and enabling one-step reconstructions with minimal additional refinement. My tools are delivered as production-ready C++/Python with reproducible benchmarks. Current focus: a generalizable machine learning model for membrane protein detection from in situ data and calibrated end-to-end pipelines that reduce manual tuning and accelerate 3D reconstructions.</p>
                 </div>
                 <div class="skills">
                     <h3>Field of interests</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Cryo-EM</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Modeling</span>
-                        <span class="skill-tag">Method Development</span>
-                        <!-- <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">SQL</span> -->
+                        <span class="skill-tag">AI</span>
+                        <span class="skill-tag">Structural Biology</span>
+                        <span class="skill-tag">Software Development</span>
+                        <!-- <span class="skill-tag">Software Development</span> -->
+                        <!-- <span class="skill-tag">JavaScript</span> -->
+                        <!-- <span class="skill-tag">SQL</span> -->
                     </div>
                 </div>
             </div>
@@ -85,22 +89,52 @@
                         <i class="fas fa-microscope"></i>
                     </div>
                     <h3>Cryo-EM Image Processing</h3>
-                    <p>Brief description of your research focus, methodologies used, and key findings or contributions to the field.</p>
+                    <p class="research-description">Advanced computational methods for processing cryo-electron microscopy images, focusing on motion correction and contrast transfer function estimation.</p>
                     <div class="research-tags">
                         <span class="tag">Motion Correction</span>
-                        <span class="tag">CTFFind</span>
+                        <span class="tag">CTF Estimation</span>
+                        <span class="tag">Image Processing</span>
                     </div>
+                    <a href="research-cryoem.html" class="research-link" target="_blank" rel="noopener noreferrer">
+                        <span>Learn More</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
+                
                 <div class="research-card">
                     <div class="research-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <h3>Deep Learning</h3>
-                    <p>Description of another research area, highlighting your contributions and the impact of your work.</p>
+                    <h3>Deep Learning for Structural Biology</h3>
+                    <p class="research-description">Applying machine learning and deep learning techniques to solve complex problems in cryo-EM data processing and structural analysis.</p>
                     <div class="research-tags">
                         <span class="tag">Template Matching</span>
                         <span class="tag">Deep Learning</span>
+                        <span class="tag">CNN</span>
+                        <span class="tag">Automation</span>
                     </div>
+                    <a href="research-deeplearning.html" class="research-link" target="_blank" rel="noopener noreferrer">
+                        <span>Learn More</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Method Development & Software</h3>
+                    <p class="research-description">Developing robust computational tools and software packages that advance the field of structural biology and cryo-EM.</p>
+                    <div class="research-tags">
+                        <span class="tag">Software Development</span>
+                        <span class="tag">cisTEM</span>
+                        <span class="tag">User Interface</span>
+                        <span class="tag">Open Source</span>
+                    </div>
+                    <a href="research-software.html" class="research-link" target="_blank" rel="noopener noreferrer">
+                        <span>Learn More</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -123,48 +157,50 @@
                         <p>This project focuses on the detection of membrane proteins from liposome structures using advanced deep learning techniques. Key achievements include the development of a novel 2D template matching algorithm and the successful application of convolutional neural networks for feature extraction.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">2D Template Matching</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/project2.jpg" alt="Project 2">
+                        <img src="assets/Unbend_Fig3.pdf" alt="Project 2">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/timothygrant80/cisTEM/tree/unbend" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="assets/Unbend_paper.pdf" class="project-link"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>[Project Name 2]</h3>
-                        <p>Another project showcasing different skills and technologies you've worked with.</p>
+                        <h3>Local Motion Correction on Cryo-EM Movie Frames</h3>
+                        <p>This project focuses on correcting local motion artifacts in cryo-electron microscopy (Cryo-EM) movie frames using advanced image processing techniques. Key achievements include the development of a novel algorithm for motion correction and the successful application of deep learning for artifact removal.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Mathematical Modeling</span>
+                            <span class="tech-tag">Multicore Processing</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/project3.jpg" alt="Project 3">
+                        <img src="assets/EELS_img.pdf" alt="Project 3">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <!--  <a href="#" class="project-link"><i class="fab fa-github"></i></a> -->
+                                <a href="assets/EELS_paper.pdf" class="project-link"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>[Project Name 3]</h3>
-                        <p>A third project demonstrating your versatility and problem-solving abilities.</p>
+                        <h3>Deep Learning (CNN-BiLSTM) in Electron Microscopy</h3>
+                        <!-- <p>A third project demonstrating your versatility and problem-solving abilities.</p> -->
+                        <p>A CNN-BiLSTM that learns local edge shapes and longer-range spectral context, trained on simulated + curated experimental spectra.</p>
+                        <p>Electron Energy Loss Spectroscopy (EELS) is powerful but slow and operator-dependent: background subtraction, low SNR, and overlapping edges make peak identification error-prone—especially in high-throughput EM workflows.</p>                        
                         <div class="project-tech">
-                            <span class="tech-tag">R</span>
-                            <span class="tech-tag">Shiny</span>
-                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">CNN feature extractor</span>
+                            <span class="tech-tag">BiLSTM context head</span>
+                            <span class="tech-tag">EM</span>
                         </div>
                     </div>
                 </div>
@@ -175,154 +211,10 @@
     <section id="publications" class="publications">
         <div class="container">
             <h2>Publications</h2>
-            <div class="publications-list">
-                <div class="publication-item">
-                    <div class="publication-year">2024</div>
-                    <div class="publication-main">
-                        <div class="publication-content">
-                            <h3>[Publication Title 1]</h3>
-                            <p class="publication-authors"><strong>[Your Name]</strong>, [Co-author 1], [Co-author 2]</p>
-                            <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                            <div class="publication-links">
-                                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                                <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                                <a href="#" class="pub-link"><i class="fab fa-github"></i> Code</a>
-                                <button class="abstract-toggle" data-target="abstract-1">
-                                    <i class="fas fa-chevron-down"></i> Abstract
-                                </button>
-                            </div>
-                        </div>
-                        <div class="publication-graphic">
-                            <video class="graphical-abstract-video" controls poster="assets/video-poster-1.jpg">
-                                <source src="assets/research-video-1.mp4" type="video/mp4">
-                                <source src="assets/research-video-1.webm" type="video/webm">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-1">
-                        <p>This is the abstract for your first publication. Replace this with the actual abstract text that describes your research methodology, key findings, and contributions to the field. The abstract should be concise yet comprehensive, giving readers a clear understanding of your work's significance and impact.</p>
-                    </div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-year">2023</div>
-                    <div class="publication-main">
-                        <div class="publication-content">
-                            <h3>[Publication Title 2]</h3>
-                            <p class="publication-authors">[Co-author 1], <strong>[Your Name]</strong>, [Co-author 2]</p>
-                            <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                            <div class="publication-links">
-                                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                                <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                                <button class="abstract-toggle" data-target="abstract-2">
-                                    <i class="fas fa-chevron-down"></i> Abstract
-                                </button>
-                            </div>
-                        </div>
-                        <div class="publication-graphic">
-                            <img src="assets/graphical-abstract-2.jpg" alt="Graphical Abstract 2" class="graphical-abstract">
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-2">
-                        <p>Abstract for your second publication goes here. Include details about your research objectives, methodology, key results, and conclusions. This section helps visitors quickly understand the scope and impact of your research without having to download the full paper.</p>
-                    </div>
-                </div>
-                <div class="publication-item">
-                    <div class="publication-year">2023</div>
-                    <div class="publication-main">
-                        <div class="publication-content">
-                            <h3>[Publication Title 3]</h3>
-                            <p class="publication-authors"><strong>[Your Name]</strong>, [Co-author 1]</p>
-                            <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                            <div class="publication-links">
-                                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                                <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                                <a href="#" class="pub-link"><i class="fab fa-github"></i> Code</a>
-                                <button class="abstract-toggle" data-target="abstract-3">
-                                    <i class="fas fa-chevron-down"></i> Abstract
-                                </button>
-                            </div>
-                        </div>
-                        <div class="publication-graphic">
-                            <img src="assets/graphical-abstract-3.jpg" alt="Graphical Abstract 3" class="graphical-abstract">
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-3">
-                        <p>The abstract for your third publication should be placed here. Describe your research problem, approach, main findings, and their implications. This gives potential employers and collaborators a quick overview of your research contributions and expertise.</p>
-                    </div>
-                </div>
-                <div class="publication-item publication-simple">
-                    <div class="publication-year">2022</div>
-                    <div class="publication-content">
-                        <h3>[Publication Title 4]</h3>
-                        <p class="publication-authors">[Co-author 1], <strong>[Your Name]</strong>, [Co-author 2], [Co-author 3]</p>
-                        <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                        <div class="publication-links">
-                            <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                            <button class="abstract-toggle" data-target="abstract-4">
-                                <i class="fas fa-chevron-down"></i> Abstract
-                            </button>
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-4">
-                        <p>Abstract for your fourth publication. This publication doesn't have a graphical abstract but still includes the expandable text abstract functionality for readers who want to learn more about your research.</p>
-                    </div>
-                </div>
-                <div class="publication-item publication-simple">
-                    <div class="publication-year">2022</div>
-                    <div class="publication-content">
-                        <h3>[Publication Title 5]</h3>
-                        <p class="publication-authors"><strong>[Your Name]</strong>, [Co-author 1]</p>
-                        <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                        <div class="publication-links">
-                            <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                            <a href="#" class="pub-link"><i class="fab fa-github"></i> Code</a>
-                            <button class="abstract-toggle" data-target="abstract-5">
-                                <i class="fas fa-chevron-down"></i> Abstract
-                            </button>
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-5">
-                        <p>Abstract for your fifth publication goes here. Include your research methodology, key findings, and contributions to the field. This format works well for older publications or those without graphical abstracts.</p>
-                    </div>
-                </div>
-                <div class="publication-item publication-simple">
-                    <div class="publication-year">2021</div>
-                    <div class="publication-content">
-                        <h3>[Publication Title 6]</h3>
-                        <p class="publication-authors">[Co-author 1], [Co-author 2], <strong>[Your Name]</strong></p>
-                        <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                        <div class="publication-links">
-                            <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                            <button class="abstract-toggle" data-target="abstract-6">
-                                <i class="fas fa-chevron-down"></i> Abstract
-                            </button>
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-6">
-                        <p>Abstract for your sixth publication. Describe the research problem you addressed, your approach, and the significance of your findings. This clean format ensures all your publications are easily accessible to visitors.</p>
-                    </div>
-                </div>
-                <div class="publication-item publication-simple">
-                    <div class="publication-year">2021</div>
-                    <div class="publication-content">
-                        <h3>[Publication Title 7]</h3>
-                        <p class="publication-authors"><strong>[Your Name]</strong>, [Co-author 1], [Co-author 2]</p>
-                        <p class="publication-venue"><em>[Journal/Conference Name]</em></p>
-                        <div class="publication-links">
-                            <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                            <button class="abstract-toggle" data-target="abstract-7">
-                                <i class="fas fa-chevron-down"></i> Abstract
-                            </button>
-                        </div>
-                    </div>
-                    <div class="publication-abstract" id="abstract-7">
-                        <p>Abstract for your seventh publication. This demonstrates your continued research productivity and expertise in your field. The abstract should highlight your unique contributions and the impact of this work.</p>
-                    </div>
+            <div class="publications-list" id="publications-container">
+                <!-- Publications will be dynamically generated here -->
+                <div class="loading-publications">
+                    <p>Loading publications...</p>
                 </div>
             </div>
         </div>
@@ -337,7 +229,7 @@
                     <div class="contact-methods">
                         <div class="contact-method">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:llkong1102@gmail.com">llkong1102 AT gmail.com</a>
+                            <a href="mailto:llkong1102@gmail.com">llkong1102@gmail.com</a>
                         </div>
                         <div class="contact-method">
                             <i class="fab fa-linkedin"></i>
@@ -372,12 +264,38 @@
         </div>
     </section>
 
+    <!-- Citation Modal -->
+    <div id="citation-modal" class="citation-modal">
+        <div class="citation-modal-content">
+            <div class="citation-modal-header">
+                <h3>Citation</h3>
+                <span class="citation-close">&times;</span>
+            </div>
+            <div class="citation-modal-body">
+                <div class="citation-format-tabs">
+                    <button class="citation-tab active" data-format="bibtex">BibTeX</button>
+                    <button class="citation-tab" data-format="apa">APA</button>
+                </div>
+                <div class="citation-content">
+                    <pre id="citation-text"></pre>
+                </div>
+                <button id="copy-citation" class="copy-btn">
+                    <i class="fas fa-copy"></i> Copy to Clipboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 [Your Name]. All rights reserved.</p>
         </div>
     </footer>
 
+    <script src="assets/bibtex-parser.js"></script>
+    <script src="assets/publication-renderer.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

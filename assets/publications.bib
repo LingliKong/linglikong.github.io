@@ -1,0 +1,164 @@
+@article{kong2025unbend,
+  title     = {Unbend: Correction of local beam-induced sample motion in cryo-EM images using a 3D spline model},
+  author    = {Kong, Lingli and Zottig, Ximena and Elferich, Johannes and Grigorieff, Nikolaus},
+  journal   = {bioRxiv},
+  year      = {2025},
+  publisher = {Cold Spring Harbor Laboratory},
+  doi       = {10.1101/2025.09.05.674398},
+  url       = {https://www.biorxiv.org/content/early/2025/09/06/2025.09.05.674398},
+  abstract  = {The exposure of frozen biological samples to the high-energy electron beam in a cryo-electron microscope commonly leads to beam-induced sample motion and distortions. Previously, we described Unblur, which is part of our cisTEM software to correct for beam-induced motion based on the alignment of full frames in a movie collected during the beam exposure (Grant et al., 2015). However, Unblur cannot accommodate motion due to more localized sample bending and distortions. Here, we present Unbend, extending Unblur by incorporating local motion correction using a three-dimensional cubic spline model. The 3D spline model is constructed using cubic B-splines along the exposure time axis, and bicubic B-splines within movie frames. Unbend is integrated into our cisTEM software with a new local motion visualization panel within the cisTEM graphical user interface. We processed movie frames from various in-situ sample types, including whole cells, lamellae, and cell lysates, to analyze motion behavior across different specimen types. To quantify the improvement in high-resolution signal, we utilized the 2D template matching method, which operates independently of the motion correction process, to search large ribosomal subunits from the motion-corrected micrographs. Overall, the signal-to-noise ratio of detected particles improved by 3 ~ 8 \% across different samples compared with full-frame aligned micrographs, while the number of detected target particles increased by up to ~ 300 \%. The total and Von Mises equivalent strain shows a deformation scale of less than 1 % in most of the samples, confirming that our model induces minimal additional distortion. Furthermore, we processed micrograph montages to study motion patterns across an entire sample, revealing considerable variance in distortion scale within the same sample, suggesting a complex underlying mechanism.}
+}
+
+@article{Elferich2025CEMOVIS,
+  author   = {Elferich, Johannes and Kaminek, Marek and Kong, Lingli and Odriozola, Adolfo and Kukulski, Wanda and Zuber, Beno{\^\i}t and Grigorieff, Nikolaus"},
+  title    = {In situ high-resolution cryo-EM reconstructions from CEMOVIS},
+  journal  = {IUCrJ},
+  year     = {2025},
+  volume   = {12},
+  number   = {4},
+  pages    = {502--510},
+  month    = {Jul},
+  doi      = {10.1107/S2052252525005196},
+  url      = {https://doi.org/10.1107/S2052252525005196},
+  abstract = {Cryo-electron microscopy can be used to image cells and tissue at high resolution. To ensure electron transparency, the sample thickness must not exceed 500nm. Focused-ion-beam (FIB) milling has become the standard method for preparing thin samples (lamellae); however, the material removed by the milling process is lost, the imageable area is usually limited to a few square micrometres and the surface layers sustain damage from the ion beam. We have examined {\it c}ryo-{\it e}lectron {\it m}icroscopy {\it o}f {\it vi}treous {\it s}ections (CEMOVIS), a technique based on cutting thin sections with a knife, as an alternative to FIB milling. Vitreous sections also sustain damage, including compression, shearing and cracks. However, samples can be sectioned in series, producing many orders of magnitude more imageable area compared to lamellae, making CEMOVIS an alternative to FIB milling with distinct advantages. Using two-dimensional template matching on images of vitreous sections of {\it Saccharomyces cerevisiae} cells, we reconstructed the 60S ribosomal subunit at near-atomic resolution, demonstrating that, in many regions of the sections, the molecular structure of these subunits is largely intact, comparable to FIB-milled lamellae.},
+  keywords = {electron tomography, integrative structural biology, imaging, structure determination, cryo-electron microscopy}
+}
+
+@article{Elferich2024CTFFIND5,
+  title     = {CTFFIND5 provides improved insight into quality, tilt, and thickness of TEM samples},
+  author    = {Elferich, Johannes and Kong, Lingli and Zottig, Ximena and Grigorieff, Nikolaus},
+  editor    = {Scheres, Sjors HW and Cardona, Albert},
+  volume    = {13},
+  year      = {2024},
+  month     = {dec},
+  pub_date  = {2024-12-20},
+  pages     = {RP97227},
+  citation  = {eLife 2024;13:RP97227},
+  doi       = {10.7554/eLife.97227},
+  url       = {https://doi.org/10.7554/eLife.97227},
+  abstract  = {Images taken by transmission electron microscopes are usually affected by lens aberrations and image defocus, among other factors. These distortions can be modeled in reciprocal space using the contrast transfer function (CTF). Accurate estimation and correction of the CTF is essential for restoring the high-resolution signal in cryogenic electron microscopy (cryoEM). Previously, we described the implementation of algorithms for this task in the \textit{cis}TEM software package (Grant et al., 2018). Here we show that taking sample characteristics, such as thickness and tilt, into account can improve CTF estimation. This is particularly important when imaging cellular samples, where measurement of sample thickness and geometry derived from accurate modeling of the Thon ring pattern helps judging the quality of the sample. This improved CTF estimation has been implemented in CTFFIND5, a new version of the \textit{cis}TEM program CTFFIND. We evaluated the accuracy of these estimates using images of tilted aquaporin crystals and eukaryotic cells thinned by focused ion beam milling. We estimate that with micrographs of sufficient quality CTFFIND5 can measure sample tilt with an accuracy of 3° and sample thickness with an accuracy of 5 nm.},
+  keywords  = {cryoEM, electron microscopy, contrast transfer function, sample quality},
+  journal   = {eLife},
+  issn      = {2050-084X},
+  publisher = {eLife Sciences Publications, Ltd}
+}
+
+@article{kongFacileHermeticTEM2023,
+  title    = {Facile Hermetic TEM Grid Preparation for Molecular Imaging of Hydrated Biological Samples at Room Temperature},
+  author   = {Kong, Lingli and Liu, Jianfang and Zhang, Meng and Lu, Zhuoyang and Xue, Han and Ren, Amy and Liu, Jiankang and Li, Jinping and Ling, Wai Li and Ren, Gang},
+  year     = {2023},
+  journal  = {Nature Communications},
+  volume   = {14},
+  number   = {1},
+  pages    = {5641},
+  doi      = {10.1038/s41467-023-41266-x},
+  abstract = {Although structures of vitrified supramolecular complexes have been determined at near-atomic resolution, elucidating in situ molecular structure in living cells remains a challenge. Here, we report a straightforward liquid cell technique, originally developed for real-time visualization of dynamics at a liquid-gas interface using transmission electron microscopy, to image wet biological samples. Due to the scattering effects from the liquid phase, the micrographs display an amplitude contrast comparable to that observed in negatively stained samples. We succeed in resolving subunits within the protein complex GroEL imaged in a buffer solution at room temperature. Additionally, we capture various stages of virus cell entry, a process for which only sparse structural data exists due to their transient nature. To scrutinize the morphological details further, we used individual particle electron tomography for 3D reconstruction of each virus. These findings showcase this approach potential as an efficient, cost-effective complement to other microscopy technique in addressing biological questions at the molecular level.}
+}
+
+@article{kongElectronEnergyLoss2022,
+  title    = {Electron Energy Loss Spectroscopy Database Synthesis and Automation of Core-Loss Edge Recognition by Deep-Learning Neural Networks},
+  author   = {Kong, Lingli and Ji, Zhengran and Xin, Huolin L.},
+  journal  = {Scientific Reports},
+  year     = {2022},
+  volume   = {12},
+  number   = {1},
+  pages    = {22183},
+  doi      = {10.1038/s41598-022-25870-3},
+  url      = {https://www.nature.com/articles/s41598-022-25870-3},
+  abstract = {The ionization edges encoded in the electron energy loss spectroscopy (EELS) spectra enable advanced material analysis including composition analyses and elemental quantifications. The development of the parallel EELS instrument and fast, sensitive detectors have greatly improved the acquisition speed of EELS spectra. However, the traditional way of core-loss edge recognition is experience based and human labor dependent, which limits the processing speed. So far, the low signal–noise ratio and the low jump ratio of the core-loss edges on the raw EELS spectra have been challenging for the automation of edge recognition. In this work, a convolutional-bidirectional long short-term memory neural network (CNN-BiLSTM) is proposed to automate the detection and elemental identification of core-loss edges from raw spectra. An EELS spectral database is synthesized by using our forward model to assist in the training and validation of the neural network. To make the synthesized spectra resemble the real spectra, we collected a large library of experimentally acquired EELS core edges. In synthesize the training library, the edges are modeled by fitting the multi-Gaussian model to the real edges from experiments, and the noise and instrumental imperfectness are simulated and added. The well-trained CNN-BiLSTM network is tested against both the simulated spectra and real spectra collected from experiments. The high accuracy of the network, 94.9 \%, proves that, without complicated preprocessing of the raw spectra, the proposed CNN-BiLSTM network achieves the automation of core-loss edge recognition for EELS spectra with high accuracy.}
+}
+
+@article{KONG2019Adsorption,
+  title    = {A new adsorption model based on generalized van der Waals partition function for the description of all types of adsorption isotherms},
+  journal  = {Chemical Engineering Journal},
+  volume   = {375},
+  pages    = {122112},
+  year     = {2019},
+  issn     = {1385-8947},
+  doi      = {https://doi.org/10.1016/j.cej.2019.122112},
+  url      = {https://www.sciencedirect.com/science/article/pii/S1385894719315062},
+  author   = {Lingli Kong and Hertanto Adidharma},
+  keywords = {Isotherm types, Hysteresis, Generalized van der Waals, Square-well potential, Adsorption},
+  abstract = {A new adsorption model is proposed based on the Generalized van der Waals partition function by introducing the concept of attractive region, which integrates the effects of the adsorption sites of adsorbent and represents pore space where adsorbates concentrate. A theoretical expression for the chemical potential of adsorbates in the attractive region is derived and used to calculate the adsorbate density in each attractive region. The model can generate all the six types of isotherms classified by the International Union of Pure and Applied Chemistry (IUPAC) report including those with hysteresis and is easy to use. It is a generalized model that can be applied to various types of porous materials. With the fitted parameters, the model can predict the adsorption isotherms even for adsorbents with wide pore size distributions. It also well captures the isotherm-type transition as temperature changes and can estimate the hysteresis when capillary condensation exists.}
+}
+
+@article{LAI2019CO2Solution,
+title = {Low-energy-consumption and environmentally friendly CO2 capture via blending alcohols into amine solution},
+journal = {Applied Energy},
+volume = {254},
+pages = {113696},
+year = {2019},
+issn = {0306-2619},
+doi = {https://doi.org/10.1016/j.apenergy.2019.113696},
+url = {https://www.sciencedirect.com/science/article/pii/S0306261919313832},
+author = {Qinghua Lai and Lingli Kong and Weibo Gong and Armistead G Russell and Maohong Fan},
+keywords = {CO capture, Monoethanolamine, Low-temperature sorbent regeneration, Amine degradation, Ethanol, Amine},
+abstract = {The conventional regeneration processes for aqueous amine-based sorbents require high regeneration temperature and are very energy intensive. In this work, a low-temperature and energy-saving CO2 capture technology has been successfully developed by using alcohols-amines-water mixtures as sorbents. The addition of certain amounts of alcohols [especially ethanol (EtOH)] to amines can significantly increase the CO2 desorption rates and cyclic CO2 capture capacities in comparison with those of monoethanolamine-water, diethanolamine-water, and methyldiethanolamine-water systems. The sorbent containing 40 wt% EtOH, 20 wt% monoethanolamine (MEA), and 20 wt% H2O can increase cyclic CO2 capture capacity by 6.8 times and a maximum improvement of 236 times in CO2 desorption rate at 75 °C, which makes the use of the low-temperature waste heat in power plants for CO2 capture or self-supported CO2 capture in power plants possible. To the best of authors’ knowledge, this is the first time that Raman and Fourier transform infrared spectroscopy characterizations have been used to confirm that ethanol in EtOH-MEA-H2O can change the reaction pathway by forming C2H5OCO2− instead of HCO3−, which is difficult to decompose. In addition, the experimental results confirm that the new technology can significantly avoid amine degradation – a common challenge of the state-of-the-art CO2 capture technologies. Therefore, the new CO2 capture technology is promising from the perspectives of energy saving and environmental protection.}
+}
+
+@article{RONY2019Biomass,
+title = {Kinetics, thermodynamics, and physical characterization of corn stover (Zea mays) for solar biomass pyrolysis potential analysis},
+journal = {Bioresource Technology},
+volume = {284},
+pages = {466-473},
+year = {2019},
+issn = {0960-8524},
+doi = {https://doi.org/10.1016/j.biortech.2019.03.049},
+url = {https://www.sciencedirect.com/science/article/pii/S0960852419303980},
+author = {Asif Hasan Rony and Lingli Kong and Wenyang Lu and Morteza Dejam and Hertanto Adidharma and Khaled A.M. Gasem and Yuan Zheng and Urszula Norton and Maohong Fan},
+keywords = {Corn stover, Solar pyrolysis, Kinetics, Thermodynamics},
+abstract = {Solar pyrolysis of agricultural waste has huge potential for sustainable production of fuel and chemical feedstock. In this paper, the kinetics, thermodynamics, and physical characterization of corn stover (CS) collected from Wyoming, USA was conducted with respect to solar pyrolysis. The kinetics and thermodynamics of the CS pyrolysis was analyzed in detail using the methods described by KAS (Kissinger-Akahira-Sunose) and FWO (Flynn-Wall-Ozawa), from which the activation energy, Gibbs energy, Arrhenius pre-exponential factor, enthalpy, and entropy were derived.14 other kinetics models based on reaction order, diffusion, nucleation, geometric contraction, power models were also examined, and models based on diffusion was found to be best suited. The CS was used for solar pyrolysis of biomass and the products were analyzed by mass spectroscopy, ICP-MS, GPC, micro-GC, and Elemental analyzer. The results show that CS is suitable for solar pyrolysis to produce chemicals and other fuels.}
+}
+
+@Article{Lingli2019IRMOFS,
+author ={Kong, Lingli and Adidharma, Hertanto},
+title  ={A generalized van der Waals model for light gas adsorption prediction in IRMOFs},
+journal  ={Phys. Chem. Chem. Phys.},
+year  ={2019},
+volume  ={21},
+issue  ={17},
+pages  ={8906-8914},
+publisher  ={The Royal Society of Chemistry},
+doi  ={10.1039/C9CP00285E},
+url  ={http://dx.doi.org/10.1039/C9CP00285E},
+abstract  ={By making reasonable simplifications to the structures of isoreticular metal–organic frameworks (IRMOFs) and defining important attractive regions of square-well potential{,} an adsorption model derived from the generalized van der Waals partition function is proposed to describe the isotherms of light gas adsorption in IRMOFs. The simplification of the structures is based on the geometries of the accessible surfaces and the dimensions of the frameworks{,} and the locations of the attractive regions are defined by examining the distribution of the adsorbate molecules. Grand Canonical Monte Carlo (GCMC) simulations using the simplified structures with square-well potentials and the complete atomic structures with Lennard-Jones and coulombic potentials are performed and compared to verify the reliability of the simplification. The adsorption model proposed in this work can predict adsorption isotherms of IRMOFs accurately by calculating the adsorbed amounts in different attractive regions of the simplified frameworks. It is also demonstrated that the model with the five parameters fitted to the adsorption isotherm at one temperature can accurately predict the isotherms at other temperatures.}
+}
+
+@article{LAI2018CO2Solid,
+title = {Amine-impregnated silicic acid composite as an efficient adsorbent for CO2 capture},
+journal = {Applied Energy},
+volume = {223},
+pages = {293-301},
+year = {2018},
+issn = {0306-2619},
+doi = {https://doi.org/10.1016/j.apenergy.2018.04.059},
+url = {https://www.sciencedirect.com/science/article/pii/S0306261918306172},
+author = {Qinghua Lai and Zhijun Diao and Lingli Kong and Hertanto Adidharma and Maohong Fan},
+keywords = {CO capture, CO adsorbent, Silicic acid, Amine-based sorbent, Sorption},
+abstract = {A new high efficiency inorganic–organic composite solid sorbent was developed by the simple impregnation of aminoethylethanolamine (AEEA) on the nanoporous silicic acid (SiO(OH)2) for CO2 capture from flue gas. Experimental results revealed that amine loading amount, adsorption temperature, and moisture addition could greatly affect the CO2 adsorption capacity. At the optimal AEEA loading of 55 wt%, the CO2 sorption capacity reached a maximum value of 4.54 mmol/g at 25 °C under 10 vol% CO2and 10 vol% H2O. To the best of our knowledge, this is the first time that an AEEA based adsorbent has been reported as an efficient adsorbent for CO2 capture. The AEEA impregnated SiO(OH)2 also had good stability and reusability during cyclic adsorption/desorption tests, and the sorption capacity loss may be recovered by mixing condensed AEEA with cyclic sorbents. The Avrami’s fractional order kinetic model was applied for the kinetic analysis of CO2 adsorption and desorption on the optimized sorbent. The obtained activation energy for CO2 desorption was 33.5 kJ/mol. The estimated regeneration heat duty on the optimized AEEA sorbent was 53.29 kJ/mol CO2, a great energy penalty reduction compared to that of a typical aqueous monoethanolamine system.}
+}
+
+@article{KONG2018SLITPORE,
+title = {Adsorption of simple square-well fluids in slit nanopores: Modeling based on Generalized van der Waals partition function and Monte Carlo simulation},
+journal = {Chemical Engineering Science},
+volume = {177},
+pages = {323-332},
+year = {2018},
+issn = {0009-2509},
+doi = {https://doi.org/10.1016/j.ces.2017.11.025},
+url = {https://www.sciencedirect.com/science/article/pii/S0009250917307042},
+author = {Lingli Kong and Hertanto Adidharma},
+keywords = {Generalized van der Waals, GCMC simulation, Adsorption, Slit pore, Square-well potential, Narrow pores},
+abstract = {A model based on the Generalized van der Waals partition function is derived to predict the adsorption of square-well fluid in slit pores of any size, the walls of which also have square-well potential. The space inside the pore is divided into several regions based on the extent of the attractive regions generated by the walls. Closed-form expressions of the chemical potentials of the confined fluid in different regions in the pore are obtained. The densities of fluid in different regions are calculated by equalizing the chemical potentials of fluid in those regions to that of the bulk phase. To examine the accuracy of the model, the Grand Canonical Monte Carlo (GCMC) simulation is also conducted. We find that the model well captures the effects of the bulk conditions and the properties of adsorbate and pore on the density of adsorbate in the pore. The model is also shown to be able to predict the adsorption of real gases in various activated carbons.}
+}
+
+% @article{yourname2021publication7,
+%   title     = {[Publication Title 7]},
+%   author    = {[Your Name] and [Co-author 1] and [Co-author 2]},
+%   journal   = {[Journal/Conference Name]},
+%   year      = {2021},
+%   publisher = {[Publisher]},
+%   doi       = {[DOI]},
+%   url       = {[URL]},
+%   abstract  = {Abstract for your seventh publication. This demonstrates your continued research productivity and expertise in your field. The abstract should highlight your unique contributions and the impact of this work. Update with your actual research abstract.}
+% }

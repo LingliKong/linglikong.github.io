@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Mapping</title>
+</head>
+<body>
+    <h1>Debug Publication Mapping</h1>
+    <div id="results"></div>
+    
+    <script src="assets/bibtex-parser.js"></script>
+    <script>
+        async function debugMapping() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                // Load files
+                const [bibtexResponse, mappingResponse] = await Promise.all([
+                    fetch('assets/publications.bib'),
+                    fetch('assets/citation-mapping.json')
+                ]);
+                
+                const bibtexContent = await bibtexResponse.text();
+                const mappingData = await mappingResponse.json();
+                
+                // Parse BibTeX
+                const parser = new BibtexParser();
+                const entries = parser.parse(bibtexContent);
+                
+                resultsDiv.innerHTML = `
+                    <h2>Parsed Entries</h2>
+                    <p><strong>Total entries parsed:</strong> ${Object.keys(entries).length}</p>
+                `;
+                
+                // Show each parsed entry
+                Object.keys(entries).forEach((key, index) => {
+                    const entry = entries[key];
+                    resultsDiv.innerHTML += `
+                        <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                            <h3>Entry ${index + 1}: ${key}</h3>
+                            <p><strong>Title:</strong> ${entry.title || 'No title'}</p>
+                            <p><strong>Abstract:</strong> ${entry.abstract ? entry.abstract.substring(0, 100) + '...' : 'No abstract'}</p>
+                        </div>
+                    `;
+                });
+                
+                resultsDiv.innerHTML += `<h2>Publication Mapping</h2>`;
+                
+                // Show mapping
+                mappingData.publications.forEach((pub, index) => {
+                    const entry = entries[pub.bibtexKey];
+                    resultsDiv.innerHTML += `
+                        <div style="border: 1px solid #00f; margin: 10px; padding: 10px;">
+                            <h3>Publication ${index + 1}</h3>
+                            <p><strong>BibTeX Key:</strong> ${pub.bibtexKey}</p>
+                            <p><strong>Citation ID:</strong> ${pub.citationId}</p>
+                            <p><strong>Found Entry:</strong> ${!!entry}</p>
+                            ${entry ? `
+                                <p><strong>Entry Title:</strong> ${entry.title || 'No title'}</p>
+                                <p><strong>Entry Abstract:</strong> ${entry.abstract ? entry.abstract.substring(0, 100) + '...' : 'No abstract'}</p>
+                            ` : '<p style="color: red;">Entry not found!</p>'}
+                        </div>
+                    `;
+                });
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+                console.error('Debug error:', error);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', debugMapping);
+    </script>
+</body>
+</html>
