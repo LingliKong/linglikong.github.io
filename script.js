@@ -94,10 +94,17 @@ if (contactForm) {
             return;
         }
         
-        // Here you would typically send the form data to a server
-        // For now, we'll just show a success message
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        this.reset();
+        // Open email client with pre-filled message
+        const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+        const mailtoLink = `mailto:llkong1102@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        
+        window.location.href = mailtoLink;
+        
+        // Show success message
+        setTimeout(() => {
+            alert('Your email client should have opened. If not, please email me directly at llkong1102@gmail.com');
+            this.reset();
+        }, 1000);
     });
 }
 
